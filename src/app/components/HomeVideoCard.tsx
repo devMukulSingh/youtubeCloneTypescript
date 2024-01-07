@@ -1,0 +1,62 @@
+import React from 'react';
+import Image from "next/image";
+import  {IHomePageVideos } from "../../types";
+const abbreviate = require("number-abbreviate");
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+
+const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
+
+    const router = useRouter();
+    
+    // const handleRouteToWatchPage = () => {
+    //     router.push(`video/${video?.videoId}`); 
+    // }
+    
+  return (
+    <Link href = {{
+        pathname:`/watchpage/${video?.videoId}`,
+        query :{ channelId: video?.channelId}
+    }}>
+
+    <main className='h-96 w-[28rem] cursor-pointer' >
+
+            <figure className='relative'>
+                <Image 
+                    className='rounded-md cursor-pointer w-full'
+                    src={video?.thumbnail[1]?.url}
+                    width={200} height={200} alt="thumbnail" />
+                <span className='absolute text-sm right-3 bottom-2 bg-black text-white rounded-lg px-2 cursor-pointer'>
+                   {video?.lengthText}
+                </span>
+            </figure>
+
+            <footer className='flex gap-2'>
+                <figure className='h-full '>
+                    <Image 
+                        src={video?.channelThumbnail[0]?.url}
+                        height={50} width={50} alt='channelUrl' className='rounded-full cursor-pointer mt-3'
+                        >
+                    </Image>
+                </figure>
+
+                <section className=' flex flex-col gap-1 w-full p-3'>
+                    <h1 className='text-xl line-clamp-2'>
+                        {video?.title}
+                    </h1>
+                    <h1 className='text-md text-slate-500 line-clamp-2'>
+                        {video?.channelTitle}
+                    </h1>
+                    <h1 className='text-md text-slate-500'>
+                       { abbreviate(video?.viewCount,1).toString().toUpperCase() } views . {video?.publishedText}
+                    </h1>
+                </section>
+            </footer>
+    </main>
+    </Link>
+
+  )
+}
+
+export default HomeVideoCard
