@@ -3,21 +3,15 @@ import Image from "next/image";
 import  {IHomePageVideos } from "../../types";
 const abbreviate = require("number-abbreviate");
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 
 const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
 
-    const router = useRouter();
-    
-    // const handleRouteToWatchPage = () => {
-    //     router.push(`video/${video?.videoId}`); 
-    // }
-    
+ 
   return (
     <Link href = {{
         pathname:`/watchpage/${video?.videoId}`,
-        query :{ channelId: video?.channelId}
+        query :{ channelId: video?.channelId, videoId: video?.videoId }
     }}>
 
     <main className='h-96 w-[28rem] cursor-pointer' >
@@ -32,7 +26,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
                 </span>
             </figure>
 
-            <footer className='flex gap-2'>
+            <div className='flex gap-2'>
                 <figure className='h-full '>
                     <Image 
                         src={video?.channelThumbnail[0]?.url}
@@ -52,7 +46,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
                        { abbreviate(video?.viewCount,1).toString().toUpperCase() } views . {video?.publishedText}
                     </h1>
                 </section>
-            </footer>
+            </div>
     </main>
     </Link>
 
