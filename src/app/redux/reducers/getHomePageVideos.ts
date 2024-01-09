@@ -12,7 +12,7 @@ export const getHomePageVideos = createAsyncThunk("youtubeApp/homepageVideo" ,
         // const { youtubeApp: { nextPageToken:nextPageTokenFromState } } = getState() as RootState;
         
     const { data:{ data:videosData, continuations:nextPageToken} } = 
-        await axios.get(`${BASE_URL}/search?query=new&type=video}`,{
+        await axios.get(`${BASE_URL}/search?query=new&type=video&geo=IN`,{
             headers:{
                 'X-RapidAPI-Key': API_KEY,
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'

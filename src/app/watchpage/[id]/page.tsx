@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react';
-import PlayerSection from '@/app/components/PlayerSection';
-import RecommendedSection from '@/app/components/RecommendedSection';
+import PlayerSection from '@/app/components/watchPage/PlayerSection';
+import RelatedVideosSection from '@/app/components/watchPage/RelatedVideosSection';
 
 
 const page = ( {searchParams} : { searchParams : { videoId:string, channelId:string } } ) => {
@@ -12,9 +12,13 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
   return (
     <>
  
-      <main className=' w-[calc(100vw-17rem)] flex'>
-        <PlayerSection/>
-        <RecommendedSection/>
+      <main className=' flex gap-4 '>
+        <section className='w-[120rem]'>
+          <PlayerSection/>
+        </section>
+        <section className=''>
+          <RelatedVideosSection/>
+        </section>
  
       </main>
     </>

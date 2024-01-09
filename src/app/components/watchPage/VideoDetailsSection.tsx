@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 import ReactPlayer from 'react-player';
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import Image from 'next/image';
-import avatar from "../../../public/avatar.png";
-import { getChannelData } from '../redux/reducers/getChannelData';
+import avatar from "../../../../public/avatar.png";
+import { getChannelData } from '../../redux/reducers/getChannelData';
 import { IHomePageVideos, IchannelData } from '@/types';
 import { AiOutlineLike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
@@ -29,10 +29,10 @@ const VideoDetailsSection = ( ) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
 
-    <main className='flex flex-col gap-4'>
+    <main className='flex flex-col gap-4 '>
 
       {/* ////////////////////////videoPlayer/////////////////////// */}
-      <div className=' h-[35rem] w-[60rem]'>
+      <div className=' h-[35rem]'>
           <ReactPlayer url={URL} width='100%' height='100%' />
       </div>
       {/* ////////////////////////videoPlayer/////////////////////// */}
@@ -46,12 +46,12 @@ const VideoDetailsSection = ( ) => {
           <div className='flex gap-3 items-center justify-between'>
 
             <div className='flex gap-5 cursor-pointer items-center'>
-              {/* <Image 
-                  src={ channelData?.thumbnail[1]?.url } 
+              <Image 
+                  src={ channelData?.thumbnail?.[1]?.url } 
                   alt='channelThumbnail' 
                   height={50} width={50} 
-                  className="rounded-full"/> */}
-               <Image src={avatar} alt='chh' height={40} width={50} className='rounded-full' />
+                  className="rounded-full"/>
+               {/* <Image src={avatar} alt='chh' height={40} width={50} className='rounded-full' /> */}
               <div>
                 <h1 className=''>{ channelData?.title}</h1>
                 <h1 className='text-sm text-slate-500'>{channelData?.subscriberCount} subscribers</h1>

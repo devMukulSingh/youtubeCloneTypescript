@@ -5,7 +5,7 @@ import CommentsSection from './CommentsSection'
 
 const PlayerSection = () => {
   return (
-    <main className=' flex flex-col gap-4'>  
+    <main className=' flex flex-col gap-4 w-full'>  
  
         <VideoDetailsSection/>
         <CommentsSection/>

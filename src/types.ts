@@ -2,11 +2,13 @@
 export interface IinitialState{
     videos: IHomePageVideos[],
     searchTerm : string | null,
-    searchResults:[],
     nextPageToken:string | null
     channelData : IchannelData,
     commentsData : IcommentsData[],
     commentsCount : string,
+    relatedVideos : IHomePageVideos[],
+    sidebar : boolean,
+    searchVideos : IHomePageVideos[],
 }
 
 export interface IHomePageVideos{

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import  {IHomePageVideos } from "../../types";
+import  {IHomePageVideos } from "../../../types";
 const abbreviate = require("number-abbreviate");
 import Link from 'next/link';
 
@@ -14,13 +14,13 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
         query :{ channelId: video?.channelId, videoId: video?.videoId }
     }}>
 
-    <main className='h-96 w-[28rem] cursor-pointer' >
+    <main className='h-[25rem] w-[28rem] cursor-pointer' >
 
-            <figure className='relative'>
+            <figure className='relative w-[28rem] h-[17rem]'>
                 <Image 
-                    className='rounded-md cursor-pointer w-full'
+                    className='rounded-md cursor-pointer'
                     src={video?.thumbnail[1]?.url}
-                    width={200} height={200} alt="thumbnail" />
+                    fill alt="thumbnail" />
                 <span className='absolute text-sm right-3 bottom-2 bg-black text-white rounded-lg px-2 cursor-pointer'>
                    {video?.lengthText}
                 </span>

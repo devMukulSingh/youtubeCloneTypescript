@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
-import { getHomePageVideos } from '../redux/reducers/getHomePageVideos';
-import HomeVideoCard from "../components/HomeVideoCard";
-import { IHomePageVideos} from "../../types";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { getHomePageVideos } from '../../redux/reducers/getHomePageVideos';
+import HomeVideoCard from "./HomeVideoCard";
+import { IHomePageVideos} from "../../../types";
 
 const HomePage = () => {
 
