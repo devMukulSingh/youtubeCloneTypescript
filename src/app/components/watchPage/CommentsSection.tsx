@@ -15,15 +15,15 @@ const CommentsSection = () => {
         const videoId = searchParams.get('videoId');
         const commentsCount = useAppSelector( state => state.commentsCount);
         const commentsData:IcommentsData[] = useAppSelector( state => state.commentsData);
-
-        console.log(commentsData);
+        // console.log(commentsData);
+        
 
         useEffect( () => {
             dispatch(getCommentsData(videoId));
         },[videoId]);
 
   return (
-    <main className='w-full flex flex-col mt-4 gap-1'>
+    <main className='flex flex-col mt-4 gap-1'>
  
           <header className=' flex gap-5'>
                 <h1 className='text-xl font-bold'>{commentsCount} Comments</h1>

@@ -14,20 +14,19 @@ const HomePage = () => {
     },[]);
 
     const videos  = useAppSelector(state => state.videos);
+    const sidebar = useAppSelector( state => state.sidebar);
     // console.log(videos);
     
 
   return (
     <>
-        <main className='flex flex-col gap-2 p-4'>
-          <section className='grid grid-cols-3 gap-6'>
+        <main className={` grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5  p-4 ${!sidebar ?'px-20 xl:grid-cols-4 lg:grid-cols-3' : ''} `}>
             {
               videos && videos?.map( (video:IHomePageVideos,index) => {
                 return <HomeVideoCard video ={video} key={index}/>
               })
             }
-  
-          </section>
+
         </main>
     </>
   )

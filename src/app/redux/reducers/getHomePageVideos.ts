@@ -18,7 +18,7 @@ export const getHomePageVideos = createAsyncThunk("youtubeApp/homepageVideo" ,
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
             }
         });
-        // console.log(data);
+        // console.log(videosData);
         return {videosData,nextPageToken} ;        
 
     }

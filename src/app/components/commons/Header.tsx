@@ -25,7 +25,6 @@ const Header = () => {
     
     const onSearchInputChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
-
     }
     const handleSearch = () => {
         router.push(`/searchpage?query=${query}`);
@@ -36,7 +35,7 @@ const Header = () => {
 
   return (
     <>
-        <main className='flex justify-between p-4 gap-3 w-full  h-[10vh] z-50 bg-white '>
+        <main className='flex justify-between p-4 gap-3 w-screen items-center h-[10vh] z-50 bg-white '>
 
             <div className='flex gap-3 items-center'>
                 <RxHamburgerMenu className = "text-2xl cursor-pointer" onClick={ handleSidebar } />

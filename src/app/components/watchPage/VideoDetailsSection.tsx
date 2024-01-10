@@ -10,20 +10,26 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { RiDownloadLine } from "react-icons/ri";
 import { useSearchParams } from 'next/navigation';
+import { getVideoDetails } from '@/app/redux/reducers/getVideoDetails';
 
 const VideoDetailsSection = ( ) => {
 
   const abbreviate = require("number-abbreviate");
   const searchParams = useSearchParams();
-  const videoId = searchParams.get('videoId')
+  const videoId = searchParams.get('videoId');
+  const channelId = searchParams.get('channelId');
   const dispatch = useAppDispatch();
-  
-  const videoData : IHomePageVideos[] = useAppSelector(state => state.videos).filter( video => video.videoId === videoId);
-  const channelData : IchannelData = useAppSelector( state => state.channelData);
-  
+
   useEffect( () => {
-    dispatch(getChannelData(videoData[0]?.channelId));
+    dispatch(getVideoDetails(videoId));
+    dispatch(getChannelData(channelId));
   },[videoId]);
+  
+  const state = useAppSelector(state => state);
+  const videoDetails : IHomePageVideos = useAppSelector(state => state.videoDetails);
+  const channelData : IchannelData = useAppSelector( state => state.channelData);
+  // console.log(state);
+  // console.log(channelData);
   
   const URL = `https://www.youtube.com/watch?v=${videoId}`;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +38,7 @@ const VideoDetailsSection = ( ) => {
     <main className='flex flex-col gap-4 '>
 
       {/* ////////////////////////videoPlayer/////////////////////// */}
-      <div className=' h-[35rem]'>
+      <div className=' md:h-[35rem] max-w-[70rem] h-[20rem]  '>
           <ReactPlayer url={URL} width='100%' height='100%' />
       </div>
       {/* ////////////////////////videoPlayer/////////////////////// */}
@@ -40,14 +46,14 @@ const VideoDetailsSection = ( ) => {
            {/* /////////////////videoDetails /////////////////////// */}
         <section className='flex flex-col gap-3'>
           
-          <h1 className='text-xl font-medium'>{videoData[0]?.title}</h1>
+          <h1 className='text-xl font-medium'>{videoDetails?.title}</h1>
             
             {/* ///////////////ChannelDetails////////////////////// */}
           <div className='flex gap-3 items-center justify-between'>
 
             <div className='flex gap-5 cursor-pointer items-center'>
               <Image 
-                  src={ channelData?.thumbnail?.[1]?.url } 
+                  src={ channelData?.thumbnail?.[0]?.url } 
                   alt='channelThumbnail' 
                   height={50} width={50} 
                   className="rounded-full"/>
@@ -80,10 +86,10 @@ const VideoDetailsSection = ( ) => {
 
             <div className='w-full bg-slate-200 rounded-lg p-3'>
                 <h1 >
-                    {abbreviate(videoData[0]?.viewCount,1)?.toString()?.toUpperCase()} views {videoData[0]?.publishedText}
+                    {abbreviate(videoDetails?.viewCount,1).toString().toUpperCase()} views {videoDetails?.publishedText}
                 </h1>
                 <h1 className='line-clamp-3'>
-                    {videoData[0]?.description}
+                    {videoDetails?.description}
                 </h1>
             </div>
             {/* /////////////////video /DESCRIPTIONS////////////////// */}

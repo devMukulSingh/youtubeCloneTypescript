@@ -25,7 +25,7 @@ export const SingleCommentComp = ( {commentData} : { commentData : IcommentsData
             <h1 className='text-slate-500 text-sm'>{commentData?.publishedTimeText}</h1>
           </div>
           <div>
-            <h1>{commentData?.textDisplay}</h1>
+            <h1 className='break-all'>{commentData?.textDisplay}</h1>
           </div>
           <div className='flex gap-3 items-center'>
               <AiOutlineLike className = "text-2xl cursor-pointer"/>

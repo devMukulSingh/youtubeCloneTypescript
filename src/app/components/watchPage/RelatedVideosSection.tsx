@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { useSearchParams } from 'next/navigation';
 import { getRelatedVideos } from '../../redux/reducers/getRelatedVideos';
-import { IHomePageVideos } from '@/types';
+import { IrelatedVideos } from '@/types';
 import RelatedVideoComp from './RelatedVideoComp';
 
 const RelatedVideosSection = () => {
@@ -15,18 +15,18 @@ const RelatedVideosSection = () => {
     dispatch(getRelatedVideos(videoId));
   },[videoId]); 
 
-  const relatedVideos:IHomePageVideos[] = useAppSelector( state => state.relatedVideos);
-  console.log(relatedVideos);
+  const relatedVideos:IrelatedVideos[] = useAppSelector( state => state.relatedVideos);
+  // console.log(relatedVideos);
   
   return (
+    
     <main className='flex flex-col gap-1 '>
       {
-        relatedVideos && relatedVideos.map( (video : IHomePageVideos ,index) => {
+        relatedVideos && relatedVideos.map( (video : IrelatedVideos ,index) => {
           return <RelatedVideoComp video={video} key={index} />
         })
       }
     </main>
   )
 }
-
 export default RelatedVideosSection

@@ -5,17 +5,20 @@ import { getChannelData } from "./reducers/getChannelData";
 import { getCommentsData } from "./reducers/getCommentsData";
 import { getRelatedVideos } from "./reducers/getRelatedVideos";
 import { getSearchData } from "./reducers/getSearchData";
+import { getVideoDetails } from "./reducers/getVideoDetails";
 
 const initialState:IinitialState = {
     videos:[],
     searchTerm:'',
+    videoDetails:undefined,
     nextPageToken : '',
     channelData : undefined,
     commentsData: [],
     commentsCount: '',
     relatedVideos : [],
-    sidebar : false,
+    sidebar : true,
     searchVideos : [],
+    
 }
 
 export const youtubeSlice = createSlice({
@@ -34,6 +37,12 @@ export const youtubeSlice = createSlice({
         builder.addCase(getChannelData.fulfilled, (state,action) => {
             state.channelData = action.payload.channelData,
             state.nextPageToken = action.payload.nextPageToken
+        });
+        builder.addCase(getVideoDetails.fulfilled, (state,action) => {
+            console.log(action.payload.videoDetails);
+            state.videoDetails = action.payload.videoDetails;
+            console.log(state.videoDetails);
+            
         });
         builder.addCase(getCommentsData.fulfilled, (state,action) => {
             state.commentsData = action.payload.commmentsData;

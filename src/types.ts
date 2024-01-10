@@ -6,9 +6,10 @@ export interface IinitialState{
     channelData : IchannelData,
     commentsData : IcommentsData[],
     commentsCount : string,
-    relatedVideos : IHomePageVideos[],
+    relatedVideos : IrelatedVideos[],
     sidebar : boolean,
     searchVideos : IHomePageVideos[],
+    videoDetails : IHomePageVideos
 }
 
 export interface IHomePageVideos{
@@ -16,7 +17,7 @@ export interface IHomePageVideos{
     lengthText: string,
     title: string,
     publishedText : string,
-    channelThumbnail : IchannelThumbnail[],
+    channelThumbnail : Ithumbnail[],
     channelTitle: string,
     viewCount: number,
     videoId : string,
@@ -36,13 +37,23 @@ export interface IcommentsData{
     likesCount : string,
     authorProfileImageUrl : Ithumbnail[]
 }
+export interface IrelatedVideos{
+    videoId:string,
+    title: string,
+    lengthText:string,
+    viewCount:string,
+    publishedTimeText:string,
+    thumbnail: Ithumbnail[],
+    channelId: string,
+    description:string,
+    channelTitle:string
+
+}
 
 export interface Ithumbnail{
     url: string
 }
-export interface IchannelThumbnail{
-    url: string
-}
+
 export interface Iparams {
     id: string,
     video : {}

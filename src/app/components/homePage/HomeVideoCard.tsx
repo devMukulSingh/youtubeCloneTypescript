@@ -3,20 +3,22 @@ import Image from "next/image";
 import  {IHomePageVideos } from "../../../types";
 const abbreviate = require("number-abbreviate");
 import Link from 'next/link';
+import { useAppSelector } from '@/app/redux/hooks';
 
 
 const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
 
+    const sidebar = useAppSelector( state => state.sidebar);
  
   return (
     <Link href = {{
-        pathname:`/watchpage/${video?.videoId}`,
+        pathname:`/watchpage`,
         query :{ channelId: video?.channelId, videoId: video?.videoId }
     }}>
+      <main className={`${ sidebar ? 'h-[22rem] ' : '' } cursor-pointer`}>
 
-    <main className='h-[25rem] w-[28rem] cursor-pointer' >
 
-            <figure className='relative w-[28rem] h-[17rem]'>
+            <figure className={`relative ${sidebar ? ' h-[15rem]' : ' h-[14rem]'}`}>
                 <Image 
                     className='rounded-md cursor-pointer'
                     src={video?.thumbnail[1]?.url}
@@ -36,7 +38,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
                 </figure>
 
                 <section className=' flex flex-col gap-1 w-full p-3'>
-                    <h1 className='text-xl line-clamp-2'>
+                    <h1 className='text-xl line-clamp-2 break-words'>
                         {video?.title}
                     </h1>
                     <h1 className='text-md text-slate-500 line-clamp-2'>
@@ -47,8 +49,8 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
                     </h1>
                 </section>
             </div>
-    </main>
-    </Link>
+        </main>
+     </Link>
 
   )
 }

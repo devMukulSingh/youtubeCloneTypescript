@@ -2,7 +2,7 @@ import { BASE_URL } from "@/constants/constants";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_KEY = process.env.NEXT_APP_YT_API_KEY2;
+const API_KEY = process.env.NEXT_APP_YT_API_KEY3;
 
 
 export const getSearchData = createAsyncThunk("youtubeApp/searchData", 
