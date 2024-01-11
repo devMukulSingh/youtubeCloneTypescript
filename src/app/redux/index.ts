@@ -25,13 +25,13 @@ export const youtubeSlice = createSlice({
     name : "youtubeApp",
     initialState,
     reducers: {
-        setSidebar : (state,action) => {
+        setSidebar : (state) => {
             state.sidebar = !state.sidebar;
         }
     },
     extraReducers : (builder) =>{
         builder.addCase(getHomePageVideos.fulfilled, (state,action) => {
-            state.videos = action.payload.videosData,
+            state.videos = [ ...state.videos, ...action.payload.videosData]
             state.nextPageToken = action.payload.nextPageToken
         });
         builder.addCase(getChannelData.fulfilled, (state,action) => {
@@ -60,13 +60,18 @@ export const youtubeSlice = createSlice({
     }
     
 })
+console.log(youtubeSlice.reducer);
+console.log(youtubeSlice.actions);
 
-export const{ setSidebar } = youtubeSlice.actions
+
 
 export const store = configureStore({
-    reducer : youtubeSlice.reducer,  
+    reducer : {
+        youtubeApp : youtubeSlice.reducer
+    }
 })
 
+export const{ setSidebar } = youtubeSlice.actions
 
 export type RootState = ReturnType<typeof store.getState> 
 export type AppDispatch = typeof store.dispatch;

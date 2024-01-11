@@ -8,7 +8,7 @@ import { useAppSelector } from '@/app/redux/hooks';
 
 const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
 
-    const sidebar = useAppSelector( state => state.sidebar);
+    const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
  
   return (
     <Link href = {{
@@ -21,7 +21,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
             <figure className={`relative ${sidebar ? ' h-[15rem]' : ' h-[14rem]'}`}>
                 <Image 
                     className='rounded-md cursor-pointer'
-                    src={video?.thumbnail[1]?.url}
+                    src={video?.thumbnail?.[1]?.url}
                     fill alt="thumbnail" />
                 <span className='absolute text-sm right-3 bottom-2 bg-black text-white rounded-lg px-2 cursor-pointer'>
                    {video?.lengthText}
@@ -31,7 +31,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
             <div className='flex gap-2'>
                 <figure className='h-full '>
                     <Image 
-                        src={video?.channelThumbnail[0]?.url}
+                        src={video?.channelThumbnail?.[0]?.url}
                         height={50} width={50} alt='channelUrl' className='rounded-full cursor-pointer mt-3'
                         >
                     </Image>

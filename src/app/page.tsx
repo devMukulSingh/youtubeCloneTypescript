@@ -5,7 +5,7 @@ import { useAppSelector } from "./redux/hooks";
  
 
 export default function Home() {
-  const sidebar = useAppSelector( state => state.sidebar);
+  const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
   return (
     <>
       <section >

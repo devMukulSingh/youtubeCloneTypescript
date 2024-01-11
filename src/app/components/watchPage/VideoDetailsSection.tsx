@@ -26,8 +26,8 @@ const VideoDetailsSection = ( ) => {
   },[videoId]);
   
   const state = useAppSelector(state => state);
-  const videoDetails : IHomePageVideos = useAppSelector(state => state.videoDetails);
-  const channelData : IchannelData = useAppSelector( state => state.channelData);
+  const videoDetails : IHomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
+  const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
   // console.log(state);
   // console.log(channelData);
   

@@ -7,7 +7,7 @@ import { FaMusic } from "react-icons/fa";
 import { useAppSelector } from '@/app/redux/hooks';
 
 const Sidebar = () => {
-  const sidebar = useAppSelector(state => state.sidebar);
+  const sidebar = useAppSelector(state => state.youtubeApp.sidebar);
   return (
     <>
       <main className={`h-[90vh] w-[15rem] z-50 bg-white fixed gap-3 p-4 ${sidebar ? '' : 'hidden' }`}>

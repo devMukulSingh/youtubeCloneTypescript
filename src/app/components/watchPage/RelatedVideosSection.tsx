@@ -15,7 +15,7 @@ const RelatedVideosSection = () => {
     dispatch(getRelatedVideos(videoId));
   },[videoId]); 
 
-  const relatedVideos:IrelatedVideos[] = useAppSelector( state => state.relatedVideos);
+  const relatedVideos:IrelatedVideos[] = useAppSelector( state => state.youtubeApp.relatedVideos);
   // console.log(relatedVideos);
   
   return (

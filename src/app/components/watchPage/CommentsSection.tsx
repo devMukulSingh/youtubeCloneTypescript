@@ -13,8 +13,8 @@ const CommentsSection = () => {
         const dispatch = useAppDispatch();
         const searchParams = useSearchParams();
         const videoId = searchParams.get('videoId');
-        const commentsCount = useAppSelector( state => state.commentsCount);
-        const commentsData:IcommentsData[] = useAppSelector( state => state.commentsData);
+        const commentsCount = useAppSelector( state => state.youtubeApp.commentsCount);
+        const commentsData:IcommentsData[] = useAppSelector( state => state.youtubeApp.commentsData);
         // console.log(commentsData);
         
 

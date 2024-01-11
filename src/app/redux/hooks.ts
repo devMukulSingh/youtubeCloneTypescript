@@ -15,36 +15,47 @@ export const useAppDispatch : () => AppDispatch = useDispatch;
 //  It's a placeholder for whatever type you've defined for your Redux store state.
 export const useAppSelector : TypedUseSelectorHook<RootState> = useSelector;
 
-export const useApi  = ( API_KEY:string, URL:string ) => {
-    
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState(null);
-    
-    try{
-            useEffect( () => {
-                fetchData();
-            },[URL]);
+interface IuseApi<T>{
+    data : T | null;
+    error : Error | null;
+    loading : boolean;
+}
 
+export const useApi = <T>(API_KEY:string, URL:string):IuseApi<T> => {
+    
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<Error | null>(null);
+    const [data, setData] = useState<T | null>(null);
+    
+    useEffect( () => {
+        fetchData();
+    },[URL]);
+    
+    
+    const fetchData = async() => {
 
-            const fetchData = async() => {
-                setLoading(true);
+        setLoading(true);
+        try{
                 const { data } = await axios.get(`${BASE_URL}/${URL}`,{
                     headers:{
                         'X-RapidAPI-Key': API_KEY,
                         'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
                     },
                 });
-                setLoading(false);
+
                 setData(data);
             }
+            catch(error : Error){
+                setError(error);
+            }
+            finally{
+                setLoading(false);
+            }
 
-    };
-        catch( (error:Error) => {
-            setError(error);
-        });
-
+            
+        };
         return { data,loading,error};
+
 }
 
 
