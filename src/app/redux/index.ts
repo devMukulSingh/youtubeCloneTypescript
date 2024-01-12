@@ -6,9 +6,10 @@ import { getCommentsData } from "./reducers/getCommentsData";
 import { getRelatedVideos } from "./reducers/getRelatedVideos";
 import { getSearchData } from "./reducers/getSearchData";
 import { getVideoDetails } from "./reducers/getVideoDetails";
+import { getTrendingVideos } from "./reducers/geTrendingVideos";
 
 const initialState:IinitialState = {
-    videos:[],
+    homePageVideos:[],
     searchTerm:'',
     videoDetails:undefined,
     nextPageToken : '',
@@ -26,12 +27,16 @@ export const youtubeSlice = createSlice({
     initialState,
     reducers: {
         setSidebar : (state) => {
-            state.sidebar = !state.sidebar;
+            state.sidebar = !state.sidebar ;
+        },
+        emptyCommentsArray : (state) => {
+            state.commentsData = [],
+            state.commentsCount = ''
         }
     },
     extraReducers : (builder) =>{
         builder.addCase(getHomePageVideos.fulfilled, (state,action) => {
-            state.videos = [ ...state.videos, ...action.payload.videosData]
+            state.homePageVideos = [ ...state.homePageVideos, ...action.payload.videosData]
             state.nextPageToken = action.payload.nextPageToken
         });
         builder.addCase(getChannelData.fulfilled, (state,action) => {
@@ -39,13 +44,12 @@ export const youtubeSlice = createSlice({
             state.nextPageToken = action.payload.nextPageToken
         });
         builder.addCase(getVideoDetails.fulfilled, (state,action) => {
-            console.log(action.payload.videoDetails);
             state.videoDetails = action.payload.videoDetails;
             console.log(state.videoDetails);
             
         });
         builder.addCase(getCommentsData.fulfilled, (state,action) => {
-            state.commentsData = action.payload.commmentsData;
+            state.commentsData = [ ...state.commentsData,...action.payload.commmentsData];
             state.commentsCount = action.payload.commentsCount;
             state.nextPageToken = action.payload.nextPageToken;
         });
@@ -54,14 +58,17 @@ export const youtubeSlice = createSlice({
             state.nextPageToken = action.payload.nextPageToken;
         });
         builder.addCase(getSearchData.fulfilled, (state,action) => {
-            state.searchVideos = action.payload.searchVideos;
+            state.searchVideos = [...state.searchVideos, ...action.payload.searchVideos];
             state.nextPageToken = action.payload.nextPageToken;
+        });
+        builder.addCase(getTrendingVideos.fulfilled, (state,action) => {
+            state.homePageVideos = action.payload.trendingVideos;
         })
     }
     
 })
-console.log(youtubeSlice.reducer);
-console.log(youtubeSlice.actions);
+// console.log(youtubeSlice.reducer);
+// console.log(youtubeSlice.actions);
 
 
 
@@ -71,7 +78,7 @@ export const store = configureStore({
     }
 })
 
-export const{ setSidebar } = youtubeSlice.actions
+export const{ setSidebar,emptyCommentsArray } = youtubeSlice.actions
 
 export type RootState = ReturnType<typeof store.getState> 
 export type AppDispatch = typeof store.dispatch;

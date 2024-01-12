@@ -5,33 +5,47 @@ import { getSearchData } from '../redux/reducers/getSearchData';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import SearchVideoCard from '../components/searchPage/SearchVideoCard';
 import { IHomePageVideos } from '@/types';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Sidebar from '../components/commons/Sidebar';
 
 const page = () => {
 
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
-  console.log(query);
   
     useEffect( () => {
-      dispatch(getSearchData(query));
+      dispatch(getSearchData({query,isNext:false}));
     },[query]);
     
 
-    const searchVideo:IHomePageVideos[] = useAppSelector(state => state.searchVideos);
-    console.log(searchVideo);
+    const searchVideo:IHomePageVideos[] = useAppSelector(state => state.youtubeApp.searchVideos);
 
   return (
-    <>
-      <main className='flex flex-col gap-3 mt-4'>
-        {
-          searchVideo && searchVideo.map( (video:IHomePageVideos,index) => {
-            return <SearchVideoCard video={video} key={index}/>
-          })
 
+      <main>
+        {
+          searchVideo.length === 0 ? <>Loading...</> :
+          <InfiniteScroll
+              next={ () => dispatch(getSearchData({query,isNext:true}))}
+              hasMore = { searchVideo.length < 300}
+              loader = {<>Loading...</>}
+              dataLength={ searchVideo.length}
+              >
+              <div className='flex flex-col gap-3 mt-4'>
+                {
+                  searchVideo && searchVideo.map( (video:IHomePageVideos,index) => {
+                    if(video.thumbnail[0].url.startsWith("/")) return;
+                    return <SearchVideoCard video={video} key={index}/>
+                  })
+                  
+                }
+              </div>
+          </InfiniteScroll>
         }
       </main>
-    </>
+    
+     
   )
 }
 

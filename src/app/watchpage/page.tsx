@@ -11,11 +11,7 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
   
   const dispatch = useAppDispatch();
   const { videoId, channelId } = searchParams;
-  const sidebar = useAppSelector(state => state.sidebar);
-
-  useEffect( () => {
-    dispatch( setSidebar(""));
-  },[]);
+  const sidebar = useAppSelector(state => state.youtubeApp.sidebar);
 
   return (
     <>

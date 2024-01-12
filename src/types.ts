@@ -1,6 +1,6 @@
 
 export interface IinitialState{
-    videos: IHomePageVideos[],
+    homePageVideos: IhomePageVideos[],
     searchTerm : string | null,
     nextPageToken:string | null
     channelData : IchannelData,
@@ -8,11 +8,11 @@ export interface IinitialState{
     commentsCount : string,
     relatedVideos : IrelatedVideos[],
     sidebar : boolean,
-    searchVideos : IHomePageVideos[],
-    videoDetails : IHomePageVideos
+    searchVideos : IhomePageVideos[],
+    videoDetails : IhomePageVideos
 }
 
-export interface IHomePageVideos{
+export interface IhomePageVideos{
     thumbnail : Ithumbnail[],
     lengthText: string,
     title: string,
@@ -59,4 +59,9 @@ export interface Iparams {
     video : {}
 }
 
- 
+ export interface IsidebarOptions{
+    name:string,
+    icon:React.ReactNode
+    type:string,
+
+ }

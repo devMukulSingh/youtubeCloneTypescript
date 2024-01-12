@@ -1,10 +1,10 @@
-import { IHomePageVideos } from '@/types';
+import { IhomePageVideos } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 const abbreviate = require("number-abbreviate");
 
-const SearchVideoCard = ( { video } : { video:IHomePageVideos} ) => {
+const SearchVideoCard = ( { video } : { video:IhomePageVideos} ) => {
   
   return (
 

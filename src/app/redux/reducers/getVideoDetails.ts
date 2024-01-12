@@ -14,6 +14,6 @@ export const getVideoDetails = createAsyncThunk("youtubeApp/videoDetails",
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
             }
         });
-        console.log(videoDetails);
+        // console.log(videoDetails);
         return {videoDetails};
     })

@@ -20,7 +20,7 @@ const Header = () => {
     const [query, setQuery] = useState("");
 
     const handleSidebar = () => {
-        dispatch(setSidebar(""));
+        dispatch(setSidebar());
     }
     
     const onSearchInputChange  = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <>
-        <main className='flex justify-between p-4 gap-3 w-screen items-center h-[10vh] z-50 bg-white '>
+        <main className='flex fixed w-full  justify-between p-4 gap-3 items-center h-[10vh] z-50 bg-white '>
 
             <div className='flex gap-3 items-center'>
                 <RxHamburgerMenu className = "text-2xl cursor-pointer" onClick={ handleSidebar } />

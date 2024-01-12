@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import Image from 'next/image';
 import avatar from "../../../../public/avatar.png";
 import { getChannelData } from '../../redux/reducers/getChannelData';
-import { IHomePageVideos, IchannelData } from '@/types';
+import { IhomePageVideos, IchannelData } from '@/types';
 import { AiOutlineLike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { RiDownloadLine } from "react-icons/ri";
@@ -26,7 +26,7 @@ const VideoDetailsSection = ( ) => {
   },[videoId]);
   
   const state = useAppSelector(state => state);
-  const videoDetails : IHomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
+  const videoDetails : IhomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
   const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
   // console.log(state);
   // console.log(channelData);

@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from "next/image";
-import  {IHomePageVideos } from "../../../types";
+import  {IhomePageVideos } from "../../../types";
 const abbreviate = require("number-abbreviate");
 import Link from 'next/link';
 import { useAppSelector } from '@/app/redux/hooks';
 
 
-const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
+const HomeVideoCard = ({video} : {video:IhomePageVideos}) => {
 
     const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
  
@@ -15,7 +15,7 @@ const HomeVideoCard = ({video} : {video:IHomePageVideos}) => {
         pathname:`/watchpage`,
         query :{ channelId: video?.channelId, videoId: video?.videoId }
     }}>
-      <main className={`${ sidebar ? 'h-[22rem] ' : '' } cursor-pointer`}>
+      <main className={`${ sidebar ? 'h-[24rem] ' : '' } cursor-pointer`}>
 
 
             <figure className={`relative ${sidebar ? ' h-[15rem]' : ' h-[14rem]'}`}>

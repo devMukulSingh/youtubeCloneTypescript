@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { getHomePageVideos } from '../../redux/reducers/getHomePageVideos';
 import HomeVideoCard from "./HomeVideoCard";
-import { IHomePageVideos} from "../../../types";
+import { IhomePageVideos} from "../../../types";
 import { FaTruckLoading } from 'react-icons/fa';
 import InfiniteScroll from "react-infinite-scroll-component"
 
@@ -15,14 +15,14 @@ const HomePage = () => {
       dispatch(getHomePageVideos(false));
     },[]);
 
-    const videos  = useAppSelector(state => state.youtubeApp.videos);
+    const videos  = useAppSelector(state => state.youtubeApp.homePageVideos);
     const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
-    console.log(videos);
+    // console.log(videos);
     
 
   return (
     <>
-        <main className={`${!sidebar ? 'px-20' : 'p-4'}`} >
+        <main className={` ${!sidebar ? 'px-20' : 'p-4'}`} >
             {
               videos.length == 0 ? <>Loading <FaTruckLoading/></>
               :
@@ -33,9 +33,10 @@ const HomePage = () => {
                 hasMore={ videos.length < 400}
                 >
 
-                <div className={` grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5  ${!sidebar ?' xl:grid-cols-4 lg:grid-cols-3' : ''} `}>
+                <div className={`mb-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5  ${!sidebar ?' xl:grid-cols-4 lg:grid-cols-3' : ''} `}>
                   { 
-                     videos?.map( (video:IHomePageVideos,index:number) => {
+                     videos?.map( (video:IhomePageVideos,index:number) => {
+                      if(!video.thumbnail?.[1]?.url) return;
                     return <HomeVideoCard video ={video} key={index}/>
                   })
                   }

@@ -19,14 +19,16 @@ const RelatedVideosSection = () => {
   // console.log(relatedVideos);
   
   return (
-    
-    <main className='flex flex-col gap-1 '>
-      {
-        relatedVideos && relatedVideos.map( (video : IrelatedVideos ,index) => {
-          return <RelatedVideoComp video={video} key={index} />
-        })
-      }
-    </main>
+    <main>
+            <div className='flex flex-col gap-1 '>
+            {
+              relatedVideos && relatedVideos.map( (video : IrelatedVideos ,index) => {
+                return <RelatedVideoComp video={video} key={index} />
+              })
+            }
+          </div>
+
+      </main>
   )
 }
 export default RelatedVideosSection
