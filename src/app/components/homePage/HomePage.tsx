@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { getHomePageVideos } from '../../redux/reducers/getHomePageVideos';
 import HomeVideoCard from "./HomeVideoCard";
 import { IhomePageVideos} from "../../../types";
-import { FaTruckLoading } from 'react-icons/fa';
 import InfiniteScroll from "react-infinite-scroll-component"
+import Loader from '../commons/Loader';
 
 const HomePage = () => {
 
@@ -17,6 +17,7 @@ const HomePage = () => {
 
     const videos  = useAppSelector(state => state.youtubeApp.homePageVideos);
     const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
+    const loading = useAppSelector(state => state.youtubeApp.loading);
     // console.log(videos);
     
 
@@ -24,12 +25,12 @@ const HomePage = () => {
     <>
         <main className={` ${!sidebar ? 'px-20' : 'p-4'}`} >
             {
-              videos.length == 0 ? <>Loading <FaTruckLoading/></>
+              loading ?  <Loader/>
               :
               <InfiniteScroll
                 dataLength={videos?.length}
                 next={ () => dispatch(getHomePageVideos(true))}
-                loader = { <>Loading...</>}
+                loader = { <><Loader/></>}
                 hasMore={ videos.length < 400}
                 >
 

@@ -5,7 +5,7 @@ import { getChannelData } from "./reducers/getChannelData";
 import { getCommentsData } from "./reducers/getCommentsData";
 import { getRelatedVideos } from "./reducers/getRelatedVideos";
 import { getSearchData } from "./reducers/getSearchData";
-import { getVideoDetails } from "./reducers/getVideoDetails";
+import { getVideoData } from "./reducers/getVideoData";
 import { getTrendingVideos } from "./reducers/geTrendingVideos";
 
 const initialState:IinitialState = {
@@ -19,7 +19,8 @@ const initialState:IinitialState = {
     relatedVideos : [],
     sidebar : true,
     searchVideos : [],
-    
+    loading : false,
+    error : undefined
 }
 
 export const youtubeSlice = createSlice({
@@ -35,34 +36,70 @@ export const youtubeSlice = createSlice({
         }
     },
     extraReducers : (builder) =>{
+        builder.addCase(getHomePageVideos.pending , (state) => {
+            if(state.loading === false) state.loading = true;
+        });
         builder.addCase(getHomePageVideos.fulfilled, (state,action) => {
-            state.homePageVideos = [ ...state.homePageVideos, ...action.payload.videosData]
+            if(state.loading === true) state.loading = false;
+            state.homePageVideos = [ ...state.homePageVideos, ...action.payload.videosDataFromApi];
             state.nextPageToken = action.payload.nextPageToken
         });
+        builder.addCase(getHomePageVideos.rejected, (state) => {
+            if(state.loading === true ) state.loading = false;
+        });
+
+        // builder.addCase(getChannelData.pending , (state) => {
+        //     state.loading = true;
+        // })
         builder.addCase(getChannelData.fulfilled, (state,action) => {
-            state.channelData = action.payload.channelData,
-            state.nextPageToken = action.payload.nextPageToken
+            // state.loading = false;
+            state.channelData = action.payload.channelDataFromApi;
         });
-        builder.addCase(getVideoDetails.fulfilled, (state,action) => {
-            state.videoDetails = action.payload.videoDetails;
-            console.log(state.videoDetails);
-            
+
+        builder.addCase(getVideoData.pending , (state) => {
+            if(state.loading === false) state.loading = true;
+        })
+        builder.addCase(getVideoData.fulfilled, (state,action) => {
+            if(state.loading === true ) state.loading = false;
+            state.videoDetails = action.payload.videoDataFromApi;
+            // console.log(state.videoDetails);       
         });
+        builder.addCase(getVideoData.rejected, (state) => {
+            if(state.loading === true ) state.loading = false;
+        })
+
+        // builder.addCase(getCommentsData.pending , (state) => {
+        //     state.loading = true;
+        // })
         builder.addCase(getCommentsData.fulfilled, (state,action) => {
-            state.commentsData = [ ...state.commentsData,...action.payload.commmentsData];
+            // state.loading = false;
+            state.commentsData = [ ...state.commentsData,...action.payload.commmentsDataFromApi];
             state.commentsCount = action.payload.commentsCount;
             state.nextPageToken = action.payload.nextPageToken;
         });
+
         builder.addCase(getRelatedVideos.fulfilled, (state,action) => {
-            state.relatedVideos = action.payload.relatedVideos;
-            state.nextPageToken = action.payload.nextPageToken;
+            state.relatedVideos = action.payload.relatedVideosFromApi;
         });
+
+        builder.addCase(getSearchData.pending , (state) => {
+            state.loading = true;
+        })
         builder.addCase(getSearchData.fulfilled, (state,action) => {
-            state.searchVideos = [...state.searchVideos, ...action.payload.searchVideos];
+            state.loading = false;  
+            state.searchVideos = [...state.searchVideos, ...action.payload.searchVideosFromApi];   
             state.nextPageToken = action.payload.nextPageToken;
         });
+        builder.addCase(getSearchData.rejected , (state) => {
+            if(state.loading = true) state.loading = false;
+        })
+
+        builder.addCase(getTrendingVideos.pending , (state) => {
+            state.loading = true;
+        })
         builder.addCase(getTrendingVideos.fulfilled, (state,action) => {
-            state.homePageVideos = action.payload.trendingVideos;
+            state.loading = false;
+            state.homePageVideos = action.payload.trendingVideosFromApi;
         })
     }
     

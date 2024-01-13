@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 
-const API_KEY = process.env.NEXT_APP_YT_API_KEY5;
+const API_KEY = process.env.NEXT_APP_YT_API_KEY3;
 
 export const getCommentsData = createAsyncThunk("youtubeApp/commentsData",
     async( {isNext, videoId} : { isNext:boolean, videoId:string}, {getState} ) => {
@@ -11,7 +11,7 @@ export const getCommentsData = createAsyncThunk("youtubeApp/commentsData",
         const{ data:
                  {
                     commentsCount,
-                     data:commmentsData,
+                     data:commmentsDataFromApi,
                       continuation:nextPageToken
                     }
                 } = await axios.get(`${BASE_URL}/comments?id=${videoId}&${isNext ? `token=${nextPageTokenFromState}` : '' } `,{
@@ -21,5 +21,5 @@ export const getCommentsData = createAsyncThunk("youtubeApp/commentsData",
                     },
                 });
                 
-        return { commmentsData, commentsCount, nextPageToken};
+        return { commmentsDataFromApi, commentsCount, nextPageToken};
     })

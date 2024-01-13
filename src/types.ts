@@ -1,3 +1,4 @@
+import { PayloadAction } from "@reduxjs/toolkit"
 
 export interface IinitialState{
     homePageVideos: IhomePageVideos[],
@@ -9,7 +10,9 @@ export interface IinitialState{
     relatedVideos : IrelatedVideos[],
     sidebar : boolean,
     searchVideos : IhomePageVideos[],
-    videoDetails : IhomePageVideos
+    videoDetails : IhomePageVideos,
+    loading : boolean,
+    error : PayloadAction
 }
 
 export interface IhomePageVideos{

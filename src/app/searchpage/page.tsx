@@ -7,6 +7,7 @@ import SearchVideoCard from '../components/searchPage/SearchVideoCard';
 import { IHomePageVideos } from '@/types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Sidebar from '../components/commons/Sidebar';
+import Loader from '../components/commons/Loader';
 
 const page = () => {
 
@@ -25,7 +26,7 @@ const page = () => {
 
       <main>
         {
-          searchVideo.length === 0 ? <>Loading...</> :
+          searchVideo.length === 0 ? <Loader/> :
           <InfiniteScroll
               next={ () => dispatch(getSearchData({query,isNext:true}))}
               hasMore = { searchVideo.length < 300}

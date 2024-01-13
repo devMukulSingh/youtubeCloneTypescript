@@ -9,13 +9,13 @@ export const getTrendingVideos = createAsyncThunk('youtubeApp/trendingVideo' ,
 
 async(type:string) => {
 
-        const { data: { data : trendingVideos} } = await axios.get(`${BASE_URL}/trending?geo=IN&type=${type}`,{
+        const { data: { data : trendingVideosFromApi} } = await axios.get(`${BASE_URL}/trending?geo=IN&type=${type}`,{
             headers: {
                 'X-RapidAPI-Key': API_KEY,
                 'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
               }
         })
-        return { trendingVideos};
+        return { trendingVideosFromApi};
         
     }
 )

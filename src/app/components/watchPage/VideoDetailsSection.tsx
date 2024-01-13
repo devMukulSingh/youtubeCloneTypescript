@@ -3,14 +3,13 @@ import React, { useEffect } from 'react'
 import ReactPlayer from 'react-player';
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import Image from 'next/image';
-import avatar from "../../../../public/avatar.png";
 import { getChannelData } from '../../redux/reducers/getChannelData';
 import { IhomePageVideos, IchannelData } from '@/types';
 import { AiOutlineLike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
 import { RiDownloadLine } from "react-icons/ri";
 import { useSearchParams } from 'next/navigation';
-import { getVideoDetails } from '@/app/redux/reducers/getVideoDetails';
+import { getVideoData } from '@/app/redux/reducers/getVideoData';
 
 const VideoDetailsSection = ( ) => {
 
@@ -21,15 +20,17 @@ const VideoDetailsSection = ( ) => {
   const dispatch = useAppDispatch();
 
   useEffect( () => {
-    dispatch(getVideoDetails(videoId));
+    dispatch(getVideoData(videoId));
     dispatch(getChannelData(channelId));
   },[videoId]);
-  
-  const state = useAppSelector(state => state);
+   
   const videoDetails : IhomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
   const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
   // console.log(state);
   // console.log(channelData);
+  const loading = useAppSelector(state => state.youtubeApp.loading);
+  console.log(loading);
+  
   
   const URL = `https://www.youtube.com/watch?v=${videoId}`;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

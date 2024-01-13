@@ -12,6 +12,9 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
   const dispatch = useAppDispatch();
   const { videoId, channelId } = searchParams;
   const sidebar = useAppSelector(state => state.youtubeApp.sidebar);
+  const loading = useAppSelector( state => state.youtubeApp.loading);
+  console.log(loading);
+  
 
   return (
     <>
@@ -22,13 +25,19 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
         </section>
 
         <section className={`px-6 sm:px-24 md:flex gap-4  ${sidebar ? 'opacity-30' : ''} `}>
+          {  
+            // loading ? <>loading...</>  :
+              <>
+                <div className='max-w-[70rem]'>
+                  <PlayerSection/>
+                </div>
+                <div className='w-[calc(100vw - 92rem)]'>
+                  <RelatedVideosSection/> 
+                </div>
+              </>
+              
+              }
 
-          <div className='max-w-[70rem]'>
-            <PlayerSection/>
-          </div>
-          <div className='w-[calc(100vw - 92rem)]'>
-            <RelatedVideosSection/>
-          </div>
         </section>
 
       </main>

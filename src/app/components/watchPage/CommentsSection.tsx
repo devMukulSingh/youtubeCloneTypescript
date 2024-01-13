@@ -17,7 +17,7 @@ const CommentsSection = () => {
         const videoId = searchParams.get('videoId');
         const commentsCount = useAppSelector( state => state.youtubeApp.commentsCount);
         const commentsData:IcommentsData[] = useAppSelector( state => state.youtubeApp.commentsData);
-        console.log(commentsData);
+        // console.log(commentsData);
         
 
         useEffect( () => {
