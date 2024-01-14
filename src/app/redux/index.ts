@@ -20,7 +20,9 @@ const initialState:IinitialState = {
     sidebar : true,
     searchVideos : [],
     loading : false,
-    error : undefined
+    error : undefined,
+    trendingVideos:[],
+    trendingType: 'now'
 }
 
 export const youtubeSlice = createSlice({
@@ -33,16 +35,20 @@ export const youtubeSlice = createSlice({
         emptyCommentsArray : (state) => {
             state.commentsData = [],
             state.commentsCount = ''
+        },
+        setTrendingType : ( state,action) => {
+            state.trendingType = action.payload;
         }
     },
     extraReducers : (builder) =>{
+
         builder.addCase(getHomePageVideos.pending , (state) => {
             if(state.loading === false) state.loading = true;
         });
         builder.addCase(getHomePageVideos.fulfilled, (state,action) => {
-            if(state.loading === true) state.loading = false;
-            state.homePageVideos = [ ...state.homePageVideos, ...action.payload.videosDataFromApi];
+            state.homePageVideos.push(...action.payload.homeVideosFromApi);
             state.nextPageToken = action.payload.nextPageToken
+            if(state.loading === true) state.loading = false;
         });
         builder.addCase(getHomePageVideos.rejected, (state) => {
             if(state.loading === true ) state.loading = false;
@@ -95,11 +101,14 @@ export const youtubeSlice = createSlice({
         })
 
         builder.addCase(getTrendingVideos.pending , (state) => {
-            state.loading = true;
+            if(state.loading = false) state.loading = true;
         })
         builder.addCase(getTrendingVideos.fulfilled, (state,action) => {
-            state.loading = false;
-            state.homePageVideos = action.payload.trendingVideosFromApi;
+            if(state.loading = true) state.loading = false;
+            state.trendingVideos = action.payload.trendingVideosFromApi;
+        })
+        builder.addCase(getTrendingVideos.rejected, (state) => {
+            if(state.loading = true) state.loading = false;
         })
     }
     
@@ -115,7 +124,7 @@ export const store = configureStore({
     }
 })
 
-export const{ setSidebar,emptyCommentsArray } = youtubeSlice.actions
+export const{ setSidebar,emptyCommentsArray,setTrendingType } = youtubeSlice.actions
 
 export type RootState = ReturnType<typeof store.getState> 
 export type AppDispatch = typeof store.dispatch;

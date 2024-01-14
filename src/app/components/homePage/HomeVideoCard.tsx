@@ -7,7 +7,8 @@ import { useAppSelector } from '@/app/redux/hooks';
 
 
 const HomeVideoCard = ({video} : {video:IhomePageVideos}) => {
-
+    // console.log(video);
+    
     const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
  
   return (
@@ -45,7 +46,7 @@ const HomeVideoCard = ({video} : {video:IhomePageVideos}) => {
                         {video?.channelTitle}
                     </h1>
                     <h1 className='text-md text-slate-500'>
-                       { abbreviate(video?.viewCount,1).toString().toUpperCase() } views . {video?.publishedText}
+                       { abbreviate(video?.viewCount,1).toString().toUpperCase() } views . {video?.publishedTimeText}
                     </h1>
                 </section>
             </div>

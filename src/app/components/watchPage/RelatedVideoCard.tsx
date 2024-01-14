@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 const abbreviate = require("number-abbreviate");
 
-const RelatedVideoComp = ( {video} : { video : IrelatedVideos}) => {
+const RelatedVideoCard = ( {video} : { video : IrelatedVideos}) => {
 
   return (
 
@@ -31,4 +31,4 @@ const RelatedVideoComp = ( {video} : { video : IrelatedVideos}) => {
   )
 }
 
-export default RelatedVideoComp
+export default RelatedVideoCard

@@ -10,6 +10,7 @@ import { FaShare } from "react-icons/fa";
 import { RiDownloadLine } from "react-icons/ri";
 import { useSearchParams } from 'next/navigation';
 import { getVideoData } from '@/app/redux/reducers/getVideoData';
+import Loader from '../commons/Loader';
 
 const VideoDetailsSection = ( ) => {
 
@@ -26,17 +27,18 @@ const VideoDetailsSection = ( ) => {
    
   const videoDetails : IhomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
   const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
+  const loading = useAppSelector( state => state.youtubeApp.loading);
   // console.log(state);
   // console.log(channelData);
-  const loading = useAppSelector(state => state.youtubeApp.loading);
-  console.log(loading);
-  
-  
+
+    
   const URL = `https://www.youtube.com/watch?v=${videoId}`;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
-
-    <main className='flex flex-col gap-4 '>
+    <>
+    {
+      loading ? <Loader/> : 
+      <main className='flex flex-col gap-4 '>
 
       {/* ////////////////////////videoPlayer/////////////////////// */}
       <div className=' md:h-[35rem] max-w-[70rem] h-[20rem]  '>
@@ -98,10 +100,9 @@ const VideoDetailsSection = ( ) => {
         </section>
            {/* /////////////////videoDetails /////////////////////// */}
 
-      
- 
-    </main>
+    </main>}
 
+  </>
   )
 }
 

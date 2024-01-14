@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { useSearchParams } from 'next/navigation';
 import { getRelatedVideos } from '../../redux/reducers/getRelatedVideos';
 import { IrelatedVideos } from '@/types';
-import RelatedVideoComp from './RelatedVideoComp';
+import RelatedVideoCard from './RelatedVideoCard';
 
 const RelatedVideosSection = () => {
   
@@ -23,7 +23,7 @@ const RelatedVideosSection = () => {
             <div className='flex flex-col gap-1 '>
             {
               relatedVideos && relatedVideos.map( (video : IrelatedVideos ,index) => {
-                return <RelatedVideoComp video={video} key={index} />
+                return <RelatedVideoCard video={video} key={index} />
               })
             }
           </div>

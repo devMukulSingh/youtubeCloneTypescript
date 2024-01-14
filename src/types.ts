@@ -12,20 +12,23 @@ export interface IinitialState{
     searchVideos : IhomePageVideos[],
     videoDetails : IhomePageVideos,
     loading : boolean,
-    error : PayloadAction
+    error : PayloadAction,
+    trendingVideos : IhomePageVideos[],
+    trendingType : string
 }
 
 export interface IhomePageVideos{
     thumbnail : Ithumbnail[],
     lengthText: string,
     title: string,
-    publishedText : string,
     channelThumbnail : Ithumbnail[],
     channelTitle: string,
     viewCount: number,
     videoId : string,
     channelId: string,
-    description:string
+    description:string,
+    type:string,
+    publishedTimeText: string
 }
 export interface IchannelData{
     title:string,

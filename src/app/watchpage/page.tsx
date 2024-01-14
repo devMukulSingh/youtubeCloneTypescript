@@ -26,7 +26,7 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
 
         <section className={`px-6 sm:px-24 md:flex gap-4  ${sidebar ? 'opacity-30' : ''} `}>
           {  
-            // loading ? <>loading...</>  :
+            // loading ? <>loading...</>  : => this was causing infinite rerender ? why
               <>
                 <div className='max-w-[70rem]'>
                   <PlayerSection/>

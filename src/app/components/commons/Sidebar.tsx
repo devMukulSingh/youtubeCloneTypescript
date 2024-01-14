@@ -11,6 +11,7 @@ import { getTrendingVideos } from '@/app/redux/reducers/geTrendingVideos';
 import { getHomePageVideos } from '@/app/redux/reducers/getHomePageVideos';
 import { usePathname, useRouter } from 'next/navigation';
 import {debounce} from 'lodash';
+import { setTrendingType } from '@/app/redux';
 
 const sidebarOptions: IsidebarOptions[] = [
   { name:'Home' ,icon: <MdHome className = "text-3xl cursor-pointer"/>, type:'home' },
@@ -28,10 +29,8 @@ const Sidebar = () => {
 
   const debouncedDispatchHomeVideos = debounce( () => {
       dispatch(getHomePageVideos(false));
-  },4000);
-  const debouncedDispatchTrendingVideos = debounce ( (type:string) => {
-    dispatch( getTrendingVideos(type));
-  },4000);
+  },2000);
+  
 
   const handleSidebarOptions = (type: string) => {
     if( type === 'home'){
@@ -41,7 +40,8 @@ const Sidebar = () => {
       else router.push("/");
     }
     else{
-      debouncedDispatchTrendingVideos(type);
+      router.push("/trendingpage");
+      dispatch(setTrendingType(type));
     }
   }
   return (

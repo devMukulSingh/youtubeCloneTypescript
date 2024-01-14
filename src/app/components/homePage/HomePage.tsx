@@ -18,31 +18,33 @@ const HomePage = () => {
     const videos  = useAppSelector(state => state.youtubeApp.homePageVideos);
     const sidebar = useAppSelector( state => state.youtubeApp.sidebar);
     const loading = useAppSelector(state => state.youtubeApp.loading);
-    // console.log(videos);
+    //using loading is causing to rerender again ? why?
+    console.log(videos);
     
 
   return (
     <>
         <main className={` ${!sidebar ? 'px-20' : 'p-4'}`} >
             {
-              loading ?  <Loader/>
+              (videos.length === 0) ?  <Loader/>
               :
               <InfiniteScroll
-                dataLength={videos?.length}
-                next={ () => dispatch(getHomePageVideos(true))}
-                loader = { <><Loader/></>}
-                hasMore={ videos.length < 400}
+                dataLength={videos.length}
+                next={ () => dispatch(getHomePageVideos(true))} 
+                loader = {<>loading...</>}
+                hasMore={ (videos.length < 200)}
+                endMessage={ <>No more videos</>}
                 >
 
                 <div className={`mb-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5  ${!sidebar ?' xl:grid-cols-4 lg:grid-cols-3' : ''} `}>
                   { 
                      videos?.map( (video:IhomePageVideos,index:number) => {
-                      if(!video.thumbnail?.[1]?.url) return;
+                      if(!video.thumbnail?.[1]?.url || video.type !== 'video' ) return;
                     return <HomeVideoCard video ={video} key={index}/>
                   })
                   }
                 </div>
-              </InfiniteScroll>
+               </InfiniteScroll>
             }
 
         </main>
