@@ -14,7 +14,8 @@ export interface IinitialState{
     loading : boolean,
     error : PayloadAction,
     trendingVideos : IhomePageVideos[],
-    trendingType : string
+    trendingType : string,
+    relatedVideosLoading: boolean
 }
 
 export interface IhomePageVideos{

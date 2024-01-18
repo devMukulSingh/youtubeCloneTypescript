@@ -1,7 +1,7 @@
 "use client"
 import Image from 'next/image'
 import React, { useEffect } from 'react'
-import TrendingVideoCard from '../components/trendingPage/TrendingVideoCard'
+import TrendingVideoCard from '@/components/trendingPage/TrendingVideoCard'
 import { getTrendingVideos } from '../redux/reducers/geTrendingVideos'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 

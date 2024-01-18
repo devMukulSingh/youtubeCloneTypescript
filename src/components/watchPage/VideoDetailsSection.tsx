@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import ReactPlayer from 'react-player';
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import Image from 'next/image';
-import { getChannelData } from '../../redux/reducers/getChannelData';
+import { getChannelData } from '@/app/redux/reducers/getChannelData';
 import { IhomePageVideos, IchannelData } from '@/types';
 import { AiOutlineLike } from "react-icons/ai";
 import { FaShare } from "react-icons/fa";
@@ -28,6 +28,7 @@ const VideoDetailsSection = ( ) => {
   const videoDetails : IhomePageVideos = useAppSelector(state => state.youtubeApp.videoDetails);
   const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
   const loading = useAppSelector( state => state.youtubeApp.loading);
+  const relatedVideosLoading = useAppSelector( state => state.youtubeApp.relatedVideosLoading);
   // console.log(state);
   // console.log(channelData);
 
@@ -35,11 +36,11 @@ const VideoDetailsSection = ( ) => {
   const URL = `https://www.youtube.com/watch?v=${videoId}`;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <>
+    <main className='flex flex-col gap-4 w-full h-full justify-center '>
     {
-      loading ? <Loader/> : 
-      <main className='flex flex-col gap-4 '>
+      (loading || relatedVideosLoading) ? <Loader/> : 
 
+        <>
       {/* ////////////////////////videoPlayer/////////////////////// */}
       <div className=' md:h-[35rem] max-w-[70rem] h-[20rem]  '>
           <ReactPlayer url={URL} width='100%' height='100%' />
@@ -89,7 +90,8 @@ const VideoDetailsSection = ( ) => {
 
             <div className='w-full bg-slate-200 rounded-lg p-3'>
                 <h1 >
-                    {abbreviate(videoDetails?.viewCount,1).toString().toUpperCase()} views {videoDetails?.publishedText}
+                    {abbreviate(videoDetails?.viewCount,1).toString().toUpperCase()} 
+                      views {videoDetails?.publishedTimeText}
                 </h1>
                 <h1 className='line-clamp-3'>
                     {videoDetails?.description}
@@ -100,9 +102,10 @@ const VideoDetailsSection = ( ) => {
         </section>
            {/* /////////////////videoDetails /////////////////////// */}
 
-    </main>}
+          </>
+          }
+      </main>
 
-  </>
   )
 }
 

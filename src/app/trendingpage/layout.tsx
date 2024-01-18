@@ -1,5 +1,5 @@
-import Header from "../components/commons/Header"
-import Sidebar from "../components/commons/Sidebar"
+import Header from "@/components/commons/Header"
+import Sidebar from "@/components/commons/Sidebar"
 
 
 

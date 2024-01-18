@@ -1,7 +1,7 @@
  "use client"
-import Header from "./components/commons/Header";
-import Sidebar from "./components/commons/Sidebar";
-import HomePage from "./components/homePage/HomePage";
+import Header from "../components/commons/Header";
+import Sidebar from "../components/commons/Sidebar";
+import HomePage from "../components/homePage/HomePage";
 import { useAppSelector } from "./redux/hooks";
  
 

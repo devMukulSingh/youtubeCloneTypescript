@@ -1,10 +1,10 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
-import avatar from "../../../../public/avatar.png";
+import avatar from "../../../public/avatar.png";
 import { SingleCommentComp } from './SingleCommentComp';
-import { getCommentsData } from '../../redux/reducers/getCommentsData';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getCommentsData } from '@/app/redux/reducers/getCommentsData';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import { useSearchParams } from 'next/navigation';
 import { IcommentsData } from '@/types';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -17,6 +17,9 @@ const CommentsSection = () => {
         const videoId = searchParams.get('videoId');
         const commentsCount = useAppSelector( state => state.youtubeApp.commentsCount);
         const commentsData:IcommentsData[] = useAppSelector( state => state.youtubeApp.commentsData);
+        const loading = useAppSelector( state => state.youtubeApp.loading);
+        const relatedVideosLoading = useAppSelector( state => state.youtubeApp.relatedVideosLoading);
+
         // console.log(commentsData);
         
 
@@ -28,7 +31,10 @@ const CommentsSection = () => {
         },[videoId]);
 
   return (
-    <main className='flex flex-col mt-4 gap-1'>
+    <>
+    {
+        !loading && !relatedVideosLoading && 
+        <main className='flex flex-col mt-4 gap-1'>
  
           <header className=' flex gap-5'>
                 <h1 className='text-xl font-bold'>{commentsCount} Comments</h1>
@@ -46,8 +52,8 @@ const CommentsSection = () => {
                 loader = { <>Loading ...</>}
                 dataLength={ commentsData.length}
                 endMessage = { <>No More Comments</>}
-
-            >
+                
+                >
             {
                 commentsData && commentsData?.map( (commentData : IcommentsData ,index) => {
                     return <SingleCommentComp commentData={commentData} key={index}/>
@@ -56,6 +62,8 @@ const CommentsSection = () => {
             </InfiniteScroll>   
 
     </main>
+    }
+</>
   )
 }
 

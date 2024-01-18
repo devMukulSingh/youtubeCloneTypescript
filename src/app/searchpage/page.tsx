@@ -3,11 +3,11 @@ import { useSearchParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { getSearchData } from '../redux/reducers/getSearchData';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import SearchVideoCard from '../components/searchPage/SearchVideoCard';
-import { IHomePageVideos } from '@/types';
+import SearchVideoCard from '@/components/searchPage/SearchVideoCard';
+import { IhomePageVideos } from '@/types';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Sidebar from '../components/commons/Sidebar';
-import Loader from '../components/commons/Loader';
+import Sidebar from '@/components/commons/Sidebar';
+import Loader from '@/components/commons/Loader';
 
 const page = () => {
 
@@ -20,7 +20,7 @@ const page = () => {
     },[query]);
     
 
-    const searchVideo:IHomePageVideos[] = useAppSelector(state => state.youtubeApp.searchVideos);
+    const searchVideo:IhomePageVideos[] = useAppSelector(state => state.youtubeApp.searchVideos);
 
   return (
 
@@ -35,7 +35,7 @@ const page = () => {
               >
               <div className='flex flex-col gap-3 mt-4'>
                 {
-                  searchVideo && searchVideo.map( (video:IHomePageVideos,index) => {
+                  searchVideo && searchVideo.map( (video:IhomePageVideos,index) => {
                     if(video.thumbnail[0].url.startsWith("/")) return;
                     return <SearchVideoCard video={video} key={index}/>
                   })

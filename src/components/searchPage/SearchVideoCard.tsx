@@ -21,7 +21,7 @@ const SearchVideoCard = ( { video } : { video:IhomePageVideos} ) => {
               <section className='flex flex-col gap-3'>
                 <h1 className='text-xl font-medium'>{video?.title}</h1>
                 <h1 className='text-sm text-slate-500'>
-                  {abbreviate(video?.viewCount).toString().toUpperCase()} views .  { video?.publishedText} 
+                  {abbreviate(video?.viewCount).toString().toUpperCase()} views .  { video?.publishedTimeText} 
                 </h1>
                 <figure className='flex gap-3 items-center'>
                   <Image src={video?.channelThumbnail?.[0]?.url} alt="channelThumbnail" width={40} height={40} className='rounded-full'/>

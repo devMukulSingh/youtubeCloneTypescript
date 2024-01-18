@@ -1,4 +1,4 @@
-import Header from "../components/commons/Header";
+import Header from "@/components/commons/Header";
 
 
 export default function RootLayout( { children} : { children: React.ReactNode}){

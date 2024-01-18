@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
-import logo from "../../../../public/logo.png";
+import logo from "../../../public/logo.png"
 import { CiSearch } from "react-icons/ci";
-import avatar from "../../../../public/avatar.png";
+import avatar from "../../../public/avatar.png";
 import { GoDeviceCameraVideo } from "react-icons/go";
 import { CiBellOn } from "react-icons/ci";
 import { useAppDispatch } from '@/app/redux/hooks';

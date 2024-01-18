@@ -17,12 +17,13 @@ const initialState:IinitialState = {
     commentsData: [],
     commentsCount: '',
     relatedVideos : [],
-    sidebar : true,
+    sidebar : false,
     searchVideos : [],
     loading : false,
     error : undefined,
     trendingVideos:[],
-    trendingType: 'now'
+    trendingType: 'now',
+    relatedVideosLoading: false
 }
 
 export const youtubeSlice = createSlice({
@@ -83,9 +84,15 @@ export const youtubeSlice = createSlice({
             state.commentsCount = action.payload.commentsCount;
             state.nextPageToken = action.payload.nextPageToken;
         });
-
+        builder.addCase(getRelatedVideos.pending, (state) => {
+            if(state.relatedVideosLoading ===false) state.relatedVideosLoading = true;
+        });
         builder.addCase(getRelatedVideos.fulfilled, (state,action) => {
             state.relatedVideos = action.payload.relatedVideosFromApi;
+            if(state.relatedVideosLoading === true) state.relatedVideosLoading = false;
+        });
+        builder.addCase(getRelatedVideos.rejected, (state) => {
+            if(state.relatedVideosLoading === true) state.relatedVideosLoading = false;
         });
 
         builder.addCase(getSearchData.pending , (state) => {

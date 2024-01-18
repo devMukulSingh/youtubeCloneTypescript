@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import  {IhomePageVideos } from "../../../types";
+import  {IhomePageVideos } from "@/types";
 const abbreviate = require("number-abbreviate");
 import Link from 'next/link';
 import { useAppSelector } from '@/app/redux/hooks';

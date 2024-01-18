@@ -1,9 +1,9 @@
 "use client"
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../redux/hooks'
-import { getHomePageVideos } from '../../redux/reducers/getHomePageVideos';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks'
+import { getHomePageVideos } from '@/app/redux/reducers/getHomePageVideos';
 import HomeVideoCard from "./HomeVideoCard";
-import { IhomePageVideos} from "../../../types";
+import { IhomePageVideos} from "@/types";
 import InfiniteScroll from "react-infinite-scroll-component"
 import Loader from '../commons/Loader';
 
