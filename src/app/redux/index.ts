@@ -19,11 +19,12 @@ const initialState:IinitialState = {
     relatedVideos : [],
     sidebar : false,
     searchVideos : [],
-    loading : false,
     error : undefined,
     trendingVideos:[],
     trendingType: 'now',
-    relatedVideosLoading: false
+    loading : false,
+    relatedVideosLoading: false,
+    trendingVideosLoading: false
 }
 
 export const youtubeSlice = createSlice({
@@ -108,14 +109,14 @@ export const youtubeSlice = createSlice({
         })
 
         builder.addCase(getTrendingVideos.pending , (state) => {
-            if(state.loading = false) state.loading = true;
+            if(state.trendingVideosLoading = false) state.trendingVideosLoading = true;
         })
         builder.addCase(getTrendingVideos.fulfilled, (state,action) => {
-            if(state.loading = true) state.loading = false;
+            if(state.trendingVideosLoading = true) state.trendingVideosLoading = false;
             state.trendingVideos = action.payload.trendingVideosFromApi;
         })
         builder.addCase(getTrendingVideos.rejected, (state) => {
-            if(state.loading = true) state.loading = false;
+            if(state.trendingVideosLoading = true) state.trendingVideosLoading = false;
         })
     }
     

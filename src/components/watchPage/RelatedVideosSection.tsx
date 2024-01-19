@@ -28,6 +28,7 @@ const RelatedVideosSection = () => {
             <div className='flex flex-col gap-1 '>
             {
               relatedVideos && relatedVideos.map( (video : IrelatedVideos ,index) => {
+                if(!video?.thumbnail?.[1]?.url) return;
                 return <RelatedVideoCard video={video} key={index} />
               })
             }

@@ -11,11 +11,12 @@ export interface IinitialState{
     sidebar : boolean,
     searchVideos : IhomePageVideos[],
     videoDetails : IhomePageVideos,
-    loading : boolean,
     error : PayloadAction,
     trendingVideos : IhomePageVideos[],
     trendingType : string,
-    relatedVideosLoading: boolean
+    loading : boolean,
+    relatedVideosLoading: boolean,
+    trendingVideosLoading: boolean
 }
 
 export interface IhomePageVideos{
