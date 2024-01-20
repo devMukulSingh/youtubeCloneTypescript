@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PlayerSection from '@/components/watchPage/PlayerSection';
 import RelatedVideosSection from '@/components/watchPage/RelatedVideosSection';
 import Sidebar from '@/components/commons/Sidebar';
@@ -9,7 +9,8 @@ import { setSidebar } from '../redux';
 
 const WatchPage = ( {searchParams} : { searchParams : { videoId:string, channelId:string } } ) => {
   
-  const dispatch = useAppDispatch();
+
+  const dispatch = useAppDispatch();  
   const { videoId, channelId } = searchParams;
   const sidebar = useAppSelector(state => state.youtubeApp.sidebar);
   const loading = useAppSelector( state => state.youtubeApp.loading);

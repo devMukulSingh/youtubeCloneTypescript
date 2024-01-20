@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player';
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks';
 import Image from 'next/image';
@@ -19,6 +19,12 @@ const VideoDetailsSection = ( ) => {
   const videoId = searchParams.get('videoId');
   const channelId = searchParams.get('channelId');
   const dispatch = useAppDispatch();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect( () => {
+    setIsMounted(true);
+  },[])
+
 
   useEffect( () => {
     dispatch(getVideoData(videoId));
@@ -29,11 +35,10 @@ const VideoDetailsSection = ( ) => {
   const channelData : IchannelData = useAppSelector( state => state.youtubeApp.channelData);
   const loading = useAppSelector( state => state.youtubeApp.loading);
   const relatedVideosLoading = useAppSelector( state => state.youtubeApp.relatedVideosLoading);
-  // console.log(state);
-  // console.log(channelData);
-
-    
   const URL = `https://www.youtube.com/watch?v=${videoId}`;
+  
+  //for hydration errors
+  if( !isMounted) return null;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <main className='flex flex-col gap-4 w-full h-full justify-center '>

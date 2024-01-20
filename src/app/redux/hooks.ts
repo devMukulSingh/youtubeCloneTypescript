@@ -1,8 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./index";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_URL } from "@/constants/constants";
+ 
 
 //   : () => AppDispatch: This specifies the type of the hook.
 //   It's a function that takes no arguments (() =>) and returns a value of type AppDispatch. 

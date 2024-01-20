@@ -39,11 +39,11 @@ export interface IchannelData{
 }
 
 export interface IcommentsData{
-    authorDisplayName: string,
+    authorText: string,
     textDisplay: string,
     publishedTimeText: string,
     likesCount : string,
-    authorProfileImageUrl : Ithumbnail[]
+    authorThumbnail : Ithumbnail[]
 }
 export interface IrelatedVideos{
     videoId:string,
