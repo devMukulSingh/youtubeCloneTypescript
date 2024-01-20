@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "..";
 import axios from "axios";
 import { BASE_URL2 } from "@/constants/constants";
-import { useApi } from "../hooks";
 
 const API_KEY = process.env.NEXT_APP_YT_API_KEY6;
 
