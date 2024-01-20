@@ -3,7 +3,7 @@ import axios from "axios";
 import { RootState } from "..";
 import { BASE_URL2 } from "@/constants/constants";
 
-const API_KEY = process.env.NEXT_APP_YT_API_KEY7;
+const API_KEY = process.env.NEXT_PUBLIC_YT_API_KEY5;
 
 export const getTrendingVideos = createAsyncThunk('youtubeApp/trendingVideo' , 
 
