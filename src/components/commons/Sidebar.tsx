@@ -10,7 +10,7 @@ import { IsidebarOptions } from '@/types';
 import { getTrendingVideos } from '@/app/redux/reducers/geTrendingVideos';
 import { getHomePageVideos } from '@/app/redux/reducers/getHomePageVideos';
 import { usePathname, useRouter } from 'next/navigation';
-import {debounce} from 'lodash';
+const debounce = require("lodash");
 import { setTrendingType } from '@/app/redux';
 
 const sidebarOptions: IsidebarOptions[] = [
