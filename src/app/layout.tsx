@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from './redux/Providers';
-import Sidebar from './components/commons/Sidebar';
-import Header from './components/commons/Header';
+import Sidebar from '@/components/commons/Sidebar';
+import Header from '@/components/commons/Header';
+
 import { useAppSelector } from './redux/hooks';
 const inter = Inter({ subsets: ['latin'] })
 
