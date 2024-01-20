@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { IhomePageVideos } from '@/types'
 import Loader from '@/components/commons/Loader'
 
-const page = () => {
+const TrendingPage = () => {
 
     const dispatch = useAppDispatch();
 
@@ -44,4 +44,4 @@ const page = () => {
   )
 }
 
-export default page
+export default TrendingPage

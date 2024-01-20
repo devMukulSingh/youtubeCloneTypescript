@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setSidebar } from '../redux';
 
 
-const page = ( {searchParams} : { searchParams : { videoId:string, channelId:string } } ) => {
+const WatchPage = ( {searchParams} : { searchParams : { videoId:string, channelId:string } } ) => {
   
   const dispatch = useAppDispatch();
   const { videoId, channelId } = searchParams;
@@ -42,4 +42,4 @@ const page = ( {searchParams} : { searchParams : { videoId:string, channelId:str
   )
 }
 
-export default page
+export default WatchPage

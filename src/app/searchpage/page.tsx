@@ -9,7 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Sidebar from '@/components/commons/Sidebar';
 import Loader from '@/components/commons/Loader';
 
-const page = () => {
+const SearchPage = () => {
 
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
@@ -50,4 +50,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SearchPage
